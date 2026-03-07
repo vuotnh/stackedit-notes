@@ -1,6 +1,7 @@
 # Mở CMD admin từ PowerShell
 ```powershell
 Start-Process  cmd  -Verb  runAs
+Start-Process  powershell  -Verb  runAs
 ```
 # Quản lý process bằng Powershell admin
 1.  Xem tất cả process đang chạy
@@ -29,5 +30,5 @@ Get-CimInstance Win32_Process | Select ProcessId,ParentProcessId,Name
 Stop-Process  -Id (Get-NetTCPConnection  -LocalPort  8000).OwningProcess  -Force
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTcxNjE4NTk0NF19
+eyJoaXN0b3J5IjpbMjA2OTAwODk1MCwxNzE2MTg1OTQ0XX0=
 -->
