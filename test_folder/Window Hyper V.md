@@ -43,12 +43,12 @@ Get-VMSwitch
 Get-VMSwitch -Name "Default Switch"
 Restart-Service vmms
 # tạo nat cho dải mạng
-New-NetNat -Name "HyperVNat" -InternalIPInterfaceAddressPrefix "172.16.13.1/24"
+New-NetNat -Name "HyperVNat" -InternalIPInterfaceAddressPrefix "172.16.13.0/24"
 ```
 
 
 Developed Human resource management sofware for Mobifone. Implemented logic for Salary management and KPI module, integrating AI-powered facial recognition for attendance tracking, and deploying using a Microservices architecture.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTIwNTk1NDI4OF19
+eyJoaXN0b3J5IjpbLTg4OTg4MTI2MywxMjA1OTU0Mjg4XX0=
 -->
