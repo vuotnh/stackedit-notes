@@ -46,9 +46,18 @@ Restart-Service vmms
 New-NetNat -Name "HyperVNat" -InternalIPInterfaceAddressPrefix "172.16.13.0/24"
 ```
 
-
-Developed Human resource management sofware for Mobifone. Implemented logic for Salary management and KPI module, integrating AI-powered facial recognition for attendance tracking, and deploying using a Microservices architecture.
+# Kiểm tra Windows Firewall
+Windows mặc định **block ICMP request**.  
+Mở cho phép Ping
+```PowerShell
+netsh  advfirewall  firewall  add  rule  name="Allow ICMPv4-In"  protocol=icmpv4:8,any  dir=in  action=allow
+```
+Hoặc bật rule có sẵn
+```PowerShell
+Get-NetFirewallRule -DisplayName "*File and Printer Sharing (Echo Request - ICMPv4-In)*"
+Enable-NetFirewallRule -DisplayGroup "File and Printer Sharing"
+```
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg4OTg4MTI2MywxMjA1OTU0Mjg4XX0=
+eyJoaXN0b3J5IjpbLTE2NzkzOTUxMzgsMTIwNTk1NDI4OF19
 -->
