@@ -29,6 +29,7 @@ Get-CimInstance Win32_Process | Select ProcessId,ParentProcessId,Name
 ```powershell
 Stop-Process  -Id (Get-NetTCPConnection  -LocalPort  8000).OwningProcess  -Force
 ```
+7. Restart 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA2OTAwODk1MCwxNzE2MTg1OTQ0XX0=
+eyJoaXN0b3J5IjpbLTUxOTQxMjM2MiwxNzE2MTg1OTQ0XX0=
 -->
