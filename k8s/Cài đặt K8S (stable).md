@@ -179,6 +179,15 @@ kubeadm token create --print-join-command
 ```
 Sau khi chạy lệnh này sẽ in ra một command sử dụng để join các workernode. Copy lệnh này và chạy trên các workernode
 
+---
+## Cài đặt Flannel CNI
+1. Tải file cấu hình của Flannel
+```bash
+wget ```
+https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+```
+```
+
 ## Cài đặt Calico CNI plugin
 1. Install tigera-operator
 ```bash
@@ -218,5 +227,5 @@ kubectl create -f custom-resources.yaml
 calicoctl ipam show --show-blocks
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjAwOTQxNzMzOF19
+eyJoaXN0b3J5IjpbLTQ0ODMwMjQ4MiwyMDA5NDE3MzM4XX0=
 -->
