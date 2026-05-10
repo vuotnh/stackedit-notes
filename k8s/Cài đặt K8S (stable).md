@@ -180,7 +180,7 @@ kubeadm token create --print-join-command
 Sau khi chạy lệnh này sẽ in ra một command sử dụng để join các workernode. Copy lệnh này và chạy trên các workernode
 
 ---
-## Cài đặt Flannel CNI
+## Cài đặt [Flannel CNI](https://github.com/flannel-io/flannel)
 1. Tải file cấu hình của Flannel
 ```bash
 wget https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
@@ -230,5 +230,5 @@ kubectl create -f custom-resources.yaml
 calicoctl ipam show --show-blocks
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMwNTk3MDE5NSwyMDA5NDE3MzM4XX0=
+eyJoaXN0b3J5IjpbLTQxNDc5ODgyMCwyMDA5NDE3MzM4XX0=
 -->
