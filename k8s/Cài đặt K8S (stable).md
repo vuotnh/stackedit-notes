@@ -183,9 +183,12 @@ Sau khi chạy lệnh này sẽ in ra một command sử dụng để join các 
 ## Cài đặt Flannel CNI
 1. Tải file cấu hình của Flannel
 ```bash
-wget ```
-https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+wget https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
+2. Chỉnh sửa network ip range trong file `kube-flannel.yml` bằng `pod-network-cidr` khi tạo cluster ở trên.
+3. Chay lệnh
+```bash
+kubectl apply -f kube-flannel.yml
 ```
 
 ## Cài đặt Calico CNI plugin
@@ -227,5 +230,5 @@ kubectl create -f custom-resources.yaml
 calicoctl ipam show --show-blocks
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQ0ODMwMjQ4MiwyMDA5NDE3MzM4XX0=
+eyJoaXN0b3J5IjpbLTMwNTk3MDE5NSwyMDA5NDE3MzM4XX0=
 -->
