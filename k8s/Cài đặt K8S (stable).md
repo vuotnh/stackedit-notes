@@ -250,9 +250,15 @@ sudo systemctl stop kubeletsudo systemctl stop containerd
 ## 3. Xóa toàn bộ state Kubernetes
 
 ```
-sudo rm -rf /etc/kubernetessudo rm -rf /var/lib/etcdsudo rm -rf /var/lib/kubeletsudo rm -rf /var/lib/cnisudo rm -rf /etc/cnisudo rm -rf /opt/cnisudo rm -rf ~/.kube
+sudo rm -rf /etc/kubernetes
+sudo rm -rf /var/lib/etcd
+sudo rm -rf /var/lib/kubelet
+sudo rm -rf /var/lib/cni
+sudo rm -rf /etc/cni
+sudo rm -rf /opt/cni
+sudo rm -rf ~/.kube
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM5MjEyNjU4NSwtNzM2NjcyMzg4LC00MT
-Q3OTg4MjAsMjAwOTQxNzMzOF19
+eyJoaXN0b3J5IjpbLTEwNjAzOTE2ODEsLTczNjY3MjM4OCwtND
+E0Nzk4ODIwLDIwMDk0MTczMzhdfQ==
 -->
