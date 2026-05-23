@@ -258,7 +258,14 @@ sudo rm -rf /etc/cni
 sudo rm -rf /opt/cni
 sudo rm -rf ~/.kube
 ```
+
+# Troubleshooting
+Check log của các systemd
+```bash
+sudo journalctl -u kubelet -n  50  --no-pager
+sudo journalctl -u kubelet -n  50  --no-pager
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwNjAzOTE2ODEsLTczNjY3MjM4OCwtND
-E0Nzk4ODIwLDIwMDk0MTczMzhdfQ==
+eyJoaXN0b3J5IjpbNzcwMzkyNDExLC03MzY2NzIzODgsLTQxND
+c5ODgyMCwyMDA5NDE3MzM4XX0=
 -->
