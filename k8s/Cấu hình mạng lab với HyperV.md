@@ -230,7 +230,7 @@ iface eth0 inet static
 
 ---
 
-# WORKER 2
+## WORKER 2
 
 ```text id="63n1iq"
 auto eth0
@@ -243,7 +243,7 @@ iface eth0 inet static
 
 ---
 
-# Restart networking
+## Restart networking
 
 ```bash id="6db4a9"
 sudo systemctl restart networking
@@ -254,11 +254,11 @@ hoặc reboot VM.
 ---
 
 
-# PHẦN 7 — Troubleshooting
+## PHẦN 7 — Troubleshooting
 
-# Nếu VM không ra internet
+## Nếu VM không ra internet
 
-## Check NAT
+### Check NAT
 
 Windows:
 
@@ -268,13 +268,13 @@ Get-NetNat
 
 ---
 
-# Check IP forwarding
+## Check IP forwarding
 
 Windows thường tự bật.
 
 ---
 
-# Check firewall
+## Check firewall
 
 Có thể Windows Firewall block.
 
@@ -290,7 +290,7 @@ Sau khi test xong nên bật lại.
 
 ---
 
-# Nếu ping host được nhưng không ping internet
+## Nếu ping host được nhưng không ping internet
 
 Thường do:
 
@@ -300,7 +300,7 @@ Thường do:
 
 ---
 
-# Kết quả cuối cùng
+## Kết quả cuối cùng
 
 | Device       | IP             |
 | ------------ | -------------- |
@@ -344,15 +344,6 @@ Set-ItemProperty `
   -Value 1
 ```
 
-Sau đó restart service:
-
-```powershell id="1lf92l"
-Restart-Service RemoteAccess
-```
-
-Nếu lỗi service không tồn tại thì reboot Windows luôn.
-
----
 
 # 2. Enable forwarding trên adapter
 
@@ -467,5 +458,5 @@ WSL sẽ truy cập được:
 Bạn muốn route luôn tới Pod CIDR của cluster nữa không? Ví dụ `10.244.0.0/16` hoặc `10.42.0.0/16`.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzE1MDI2ODQ3LDQ1MzI1OTYxNF19
+eyJoaXN0b3J5IjpbLTg5NTUxNzAyNyw0NTMyNTk2MTRdfQ==
 -->
