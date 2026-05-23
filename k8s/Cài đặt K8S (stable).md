@@ -84,12 +84,12 @@ sudo apt-get install -y apt-transport-https ca-certificates curl gpg socat
 ```bash
 # If the directory `/etc/apt/keyrings` does not exist, it should be created before the curl command, read the note below.
 # sudo mkdir -p -m 755 /etc/apt/keyrings
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.36/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 ```
 3.  Add the appropriate Kubernetes  `apt`  repository. Please note that this repository have packages only for Kubernetes 1.31; for other Kubernetes minor versions, you need to change the Kubernetes minor version in the URL to match your desired minor version (you should also check that you are reading the documentation for the version of Kubernetes that you plan to install).
     
 ```bash
-echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.36/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 ```
 4.  Update the  `apt`  package index, install kubelet, kubeadm and kubectl, and pin their version:
@@ -230,5 +230,6 @@ kubectl create -f custom-resources.yaml
 calicoctl ipam show --show-blocks
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQxNDc5ODgyMCwyMDA5NDE3MzM4XX0=
+eyJoaXN0b3J5IjpbLTczNjY3MjM4OCwtNDE0Nzk4ODIwLDIwMD
+k0MTczMzhdfQ==
 -->
