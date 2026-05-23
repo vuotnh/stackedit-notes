@@ -319,6 +319,153 @@ Thường do:
 * MetalLB lab sau này.
 
 ---
+# Kết nối WSL với HyperV
+Hiện tại:
+
+* `k8s-int`: `192.168.100.1/24`
+* WSL network: `172.23.64.1/20`
+
+Windows host đang nằm giữa 2 mạng này nên thực ra chỉ cần:
+
+1. bật IP forwarding trên Windows
+2. thêm route trong WSL
+3. mở firewall nếu cần
+
+---
+
+# 1. Bật IP forwarding trên Windows
+
+Mở PowerShell Administrator:
+
+```powershell id="y58vrn"
+Set-ItemProperty `
+  -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters `
+  -Name IPEnableRouter `
+  -Value 1
+```
+
+Sau đó restart service:
+
+```powershell id="1lf92l"
+Restart-Service RemoteAccess
+```
+
+Nếu lỗi service không tồn tại thì reboot Windows luôn.
+
+---
+
+# 2. Enable forwarding trên adapter
+
+PowerShell Admin:
+
+```powershell id="44q3nh"
+Get-NetIPInterface
+```
+
+Enable forwarding cho:
+
+* `vEthernet (WSL (Hyper-V firewall))`
+* `vEthernet (k8s-int)`
+
+```powershell id="1b1m2s"
+Set-NetIPInterface -InterfaceAlias "vEthernet (WSL (Hyper-V firewall))" -Forwarding Enabled
+
+Set-NetIPInterface -InterfaceAlias "vEthernet (k8s-int)" -Forwarding Enabled
+```
+
+---
+
+# 3. Thêm route trong WSL
+
+Trong Ubuntu WSL:
+
+```bash id="pxj0iz"
+sudo ip route add 192.168.100.0/24 via 172.23.64.1
+```
+
+Kiểm tra:
+
+```bash id="vs8q9e"
+ip route
+```
+
+Bạn sẽ thấy:
+
+```text id="qjnn5m"
+192.168.100.0/24 via 172.23.64.1 dev eth0
+```
+
+---
+
+# 4. Test
+
+Từ WSL:
+
+```bash id="e0qczd"
+ping 192.168.100.1
+```
+
+Sau đó ping node Kubernetes:
+
+```bash id="e0lxoq"
+ping 192.168.100.x
+```
+
+---
+
+# 5. Nếu ping gateway được nhưng không ping được node
+
+Thì VM/node Kubernetes chưa có route ngược về WSL subnet.
+
+Ví dụ node Kubernetes phải biết:
+
+```text id="70zjfi"
+172.23.64.0/20 via 192.168.100.1
+```
+
+Trên node Linux:
+
+```bash id="fbyuwr"
+sudo ip route add 172.23.64.0/20 via 192.168.100.1
+```
+
+---
+
+# 6. Windows Firewall
+
+Nếu vẫn timeout:
+
+```powershell id="zc58ql"
+New-NetFirewallRule `
+  -DisplayName "Allow WSL-K8S Routing" `
+  -Direction Inbound `
+  -Action Allow `
+  -Protocol Any
+```
+
+---
+
+Sau khi xong:
+
+```text id="t6vxr4"
+WSL (172.23.x.x)
+   ↓
+Windows Router
+   ↓
+k8s-int (192.168.100.x)
+   ↓
+Kubernetes nodes
+```
+
+WSL sẽ truy cập được:
+
+* kube-apiserver
+* node IP
+* service CIDR (nếu route tiếp)
+* pod CIDR (nếu CNI advertise route)
+
+Bạn muốn route luôn tới Pod CIDR của cluster nữa không? Ví dụ `10.244.0.0/16` hoặc `10.42.0.0/16`.
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1MjU3MDc3NTgsNDUzMjU5NjE0XX0=
+eyJoaXN0b3J5IjpbNzE1MDI2ODQ3LDQ1MzI1OTYxNF19
 -->
