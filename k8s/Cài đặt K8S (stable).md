@@ -229,7 +229,30 @@ kubectl create -f custom-resources.yaml
 ```sh
 calicoctl ipam show --show-blocks
 ```
+
+# Reset toàn bộ cluster
+## 1. Reset kubeadm
+
+```
+sudo kubeadm reset -f
+```
+
+----------
+
+## 2. Stop services
+
+```
+sudo systemctl stop kubeletsudo systemctl stop containerd
+```
+
+----------
+
+## 3. Xóa toàn bộ state Kubernetes
+
+```
+sudo rm -rf /etc/kubernetessudo rm -rf /var/lib/etcdsudo rm -rf /var/lib/kubeletsudo rm -rf /var/lib/cnisudo rm -rf /etc/cnisudo rm -rf /opt/cnisudo rm -rf ~/.kube
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTczNjY3MjM4OCwtNDE0Nzk4ODIwLDIwMD
-k0MTczMzhdfQ==
+eyJoaXN0b3J5IjpbLTM5MjEyNjU4NSwtNzM2NjcyMzg4LC00MT
+Q3OTg4MjAsMjAwOTQxNzMzOF19
 -->
