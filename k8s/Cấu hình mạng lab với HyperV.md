@@ -30,7 +30,7 @@ Debian VM
 
 # PHẦN 1 — Tạo Internal Switch
 
-## Mở Hyper-V Manager
+### Mở Hyper-V Manager
 
 ```text id="a7q40m"
 Hyper-V Manager
@@ -39,7 +39,7 @@ Hyper-V Manager
 
 ---
 
-## Tạo switch mới
+### Tạo switch mới
 
 Chọn:
 
@@ -59,7 +59,7 @@ Apply
 ```
 ---
 
-# PHẦN 2 — Kiểm tra adapter trên Windows
+## PHẦN 2 — Kiểm tra adapter trên Windows
 
 Mở PowerShell Admin:
 
@@ -87,11 +87,11 @@ Wi-Fi                     Intel(R) Wi-Fi 6E AX211 160MHz                5 Up    
 
 ---
 
-# PHẦN 3 — Gán IP cho switch
+## PHẦN 3 — Gán IP cho switch
 
 Đây sẽ là gateway cho VM.
 
-## Set IP:
+### Set IP:
 
 ```powershell id="1q06eh"
 New-NetIPAddress `
@@ -102,7 +102,7 @@ New-NetIPAddress `
 
 ---
 
-# Verify
+## Verify
 
 ```powershell id="9v08l2"
 Get-NetIPAddress -InterfaceAlias "vEthernet (k8s-int)"
@@ -130,11 +130,11 @@ Ethernet adapter vEthernet (k8s-int):
 
 ---
 
-# PHẦN 4 — Tạo NAT
+## PHẦN 4 — Tạo NAT
 
 Đây là bước cho VM ra internet.
 
-## Tạo NAT
+### Tạo NAT
 
 ```powershell id="0t6e2t"
 New-NetNat `
@@ -144,7 +144,7 @@ New-NetNat `
 
 ---
 
-# Verify NAT
+## Verify NAT
 
 ```powershell id="6vl0r7"
 Get-NetNat
@@ -159,7 +159,7 @@ InternalIPInterfaceAddressPrefix: 192.168.100.0/24
 
 ---
 
-# PHẦN 5 — Attach switch vào VM
+## PHẦN 5 — Attach switch vào VM
 
 Trong Hyper-V:
 
@@ -178,11 +178,11 @@ Làm cho:
 
 ---
 
-# PHẦN 6 — Config static IP cho Debian
+## PHẦN 6 — Config static IP cho Debian
 
-# MASTER NODE
+## MASTER NODE
 
-## Xem tên NIC
+### Xem tên NIC
 
 Trong Debian:
 
@@ -198,7 +198,7 @@ eth0
 
 ---
 
-## Edit network config
+### Edit network config
 
 ```bash id="u90g3u"
 sudo nano /etc/network/interfaces
@@ -217,7 +217,7 @@ iface eth0 inet static
 
 ---
 
-# WORKER 1
+## WORKER 1
 
 ```text id="qjlwmr"
 auto eth0
@@ -458,5 +458,5 @@ WSL sẽ truy cập được:
 Bạn muốn route luôn tới Pod CIDR của cluster nữa không? Ví dụ `10.244.0.0/16` hoặc `10.42.0.0/16`.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTg5NTUxNzAyNyw0NTMyNTk2MTRdfQ==
+eyJoaXN0b3J5IjpbLTkzODQ0MjQ0NF19
 -->
