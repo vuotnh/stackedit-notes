@@ -253,69 +253,8 @@ hoặc reboot VM.
 
 ---
 
-# PHẦN 7 — TEST
 
-# Test IP
-
-```bash id="1m5vxa"
-ip a
-```
-
----
-
-# Test route
-
-```bash id="m7yknd"
-ip route
-```
-
-Bạn phải thấy:
-
-```text id="v8sn2y"
-default via 192.168.100.1
-```
-
----
-
-# Test ping host Windows
-
-```bash id="r0f0sr"
-ping 192.168.100.1
-```
-
----
-
-# Test internet
-
-```bash id="34f2l9"
-ping 8.8.8.8
-```
-
----
-
-# Test DNS
-
-```bash id="3nrp7f"
-ping google.com
-```
-
----
-
-# PHẦN 8 — Kubernetes config
-
-Sau khi networking OK:
-
-## Master:
-
-```bash id="mjlwmv"
-kubeadm init \
-  --control-plane-endpoint=192.168.100.10 \
-  --pod-network-cidr=10.244.0.0/16
-```
-
----
-
-# PHẦN 9 — Troubleshooting
+# PHẦN 7 — Troubleshooting
 
 # Nếu VM không ra internet
 
@@ -379,6 +318,7 @@ Thường do:
 * Calico
 * MetalLB lab sau này.
 
+---
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNDUzMjU5NjE0XX0=
+eyJoaXN0b3J5IjpbLTE1MjU3MDc3NTgsNDUzMjU5NjE0XX0=
 -->
