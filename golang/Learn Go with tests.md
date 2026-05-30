@@ -119,6 +119,9 @@ BenchmarkRepeatNoAllocation-22          76488660                14.65 ns/op     
 * `B/op`:  là số lượng bytes đã allocated ở mỗi lần chạy (per iteration)
 * `allocs/op`: là số lần ***memory allocations*** ở mỗi lần chạy (per iteration)
 
+# Pointer
+In Go, **when you call a function or a method the arguments are**  _**copied**_.
+When calling `func (w Wallet) Deposit(amount int)` the `w` is a copy of whatever we called the method from.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjgwMjQzNzg1XX0=
+eyJoaXN0b3J5IjpbMTI1NTc5NDM2OSwyODAyNDM3ODVdfQ==
 -->
