@@ -122,6 +122,48 @@ BenchmarkRepeatNoAllocation-22          76488660                14.65 ns/op     
 # Pointer
 In Go, **when you call a function or a method the arguments are**  _**copied**_.
 When calling `func (w Wallet) Deposit(amount int)` the `w` is a copy of whatever we called the method from.
+```go
+
+package pointer_error
+
+import "fmt"
+
+type Wallet struct {
+	balance int
+}
+
+func (w Wallet) Deposit(amount int) int {
+	fmt.Printf("address of balance in Deposit is %p \n", &w.balance)
+	return w.balance + amount
+}
+
+func (w Wallet) Balance() int {
+	return w.balance
+}
+```
+```go
+package pointer_error
+
+import (
+	"fmt"
+	"testing"
+)
+
+func TestWallet(t *testing.T) {
+	wallet := &Wallet{}
+
+	wallet.Deposit(100)
+	fmt.Printf("address of balance in test is %p \n", &wallet.balance)
+
+	got := wallet.Balance()
+	want := 100
+
+	if got != want {
+		t.Errorf("got %d, want %d", got, want)
+	}
+}
+
+```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI1NTc5NDM2OSwyODAyNDM3ODVdfQ==
+eyJoaXN0b3J5IjpbMjA2MTUxODM5NCwyODAyNDM3ODVdfQ==
 -->
